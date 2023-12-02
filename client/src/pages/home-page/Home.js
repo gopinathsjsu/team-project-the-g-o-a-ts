@@ -207,9 +207,9 @@ const Home = (props) => {
             </div>
             <div className="home-pricing-card1">
               <div className="home-container14">
-                <span className="home-text17 heading3">BASIC</span>
-                <span className="home-basic-plan-description">
-                  Upgrade to our basic plan for more movie options and
+                <span className="home-text17 heading3">PREMIUM</span>
+                <span className="home-premium-plan-description">
+                  Upgrade to our premium plan for more movie options and
                   additional perks
                 </span>
               </div>
@@ -218,79 +218,37 @@ const Home = (props) => {
                   <span>$</span>
                   <span></span>
                 </span>
-                <span className="home-basic-plan-pricing">7</span>
-                <span className="home-text21">/ month</span>
+                <span className="home-premium-plan-pricing">15</span>
+                <span className="home-text21">/ annual</span>
               </div>
               <div className="home-container16">
                 <div className="home-container17">
                   <span className="home-text23">All features of FREE plan</span>
                 </div>
                 <div className="home-container18">
-                  <span className="home-basic-plan-features">
+                  <span className="home-premium-plan-features">
                     Access to all movie screenings
                   </span>
                 </div>
                 <div className="home-container19">
-                  <span className="home-basic-plan-features1">
+                  <span className="home-premium-plan-features1">
                     Priority seating at select screenings
                   </span>
                 </div>
                 <div className="home-container20">
-                  <span className="home-basic-plan-features2">
+                  <span className="home-premium-plan-features2">
                     Exclusive discounts at partner theaters
                   </span>
                 </div>
                 <div className="home-container21">
-                  <span className="home-basic-plan-features3">
+                  <span className="home-premium-plan-features3">
                     Early access to ticket sales
                   </span>
                 </div>
               </div>
               <button className="home-button1 button">
-                Try the Basic plan
+                Try the Premium plan
               </button>
-            </div>
-            <div className="home-pricing-card2">
-              <div className="home-container22">
-                <span className="home-text28 heading3">
-                  <span>PRO</span>
-                  <br></br>
-                </span>
-                <span className="home-pro-plan-description">
-                  Get the ultimate movie theater experience with our pro plan
-                </span>
-              </div>
-              <div className="home-container23">
-                <span className="home-text31">
-                  <span>$</span>
-                  <span></span>
-                </span>
-                <span className="home-pro-plan-pricing">20</span>
-                <span className="home-text34">/ month</span>
-              </div>
-              <div className="home-container24">
-                <div className="home-container25">
-                  <span className="home-text36">
-                    All features of BASIC plan
-                  </span>
-                </div>
-                <div className="home-container26">
-                  <span className="home-pro-plan-features">
-                    VIP access to all movie screenings
-                  </span>
-                </div>
-                <div className="home-container27">
-                  <span className="home-pro-plan-features1">
-                    Reserved seating at all screenings
-                  </span>
-                </div>
-                <div className="home-container28">
-                  <span className="home-pro-plan-features2">
-                    Complimentary concessions at every visit
-                  </span>
-                </div>
-              </div>
-              <button className="home-button2 button">Try the PRO plan</button>
             </div>
           </div>
         </div>

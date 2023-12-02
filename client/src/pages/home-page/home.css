@@ -632,7 +632,7 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-.home-basic-plan-description {
+.home-premium-plan-description {
   line-height: 1.6;
 }
 .home-container15 {
@@ -646,7 +646,7 @@
   margin-top: var(--dl-space-space-twounits);
   font-weight: 300;
 }
-.home-basic-plan-pricing {
+.home-premium-plan-pricing {
   font-size: 4rem;
   font-weight: 700;
 }
@@ -690,7 +690,7 @@
 .home-text24 {
   color: var(--dl-color-gray-800);
 }
-.home-basic-plan-features {
+.home-premium-plan-features {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
 }
@@ -706,7 +706,7 @@
 .home-text25 {
   color: var(--dl-color-gray-800);
 }
-.home-basic-plan-features1 {
+.home-premium-plan-features1 {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
 }
@@ -722,7 +722,7 @@
 .home-text26 {
   color: var(--dl-color-gray-800);
 }
-.home-basic-plan-features2 {
+.home-premium-plan-features2 {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
 }
@@ -738,7 +738,7 @@
 .home-text27 {
   color: var(--dl-color-gray-800);
 }
-.home-basic-plan-features3 {
+.home-premium-plan-features3 {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
 }
