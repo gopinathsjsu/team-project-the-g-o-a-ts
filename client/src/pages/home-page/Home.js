@@ -225,11 +225,6 @@ const Home = (props) => {
                 <div className="home-container17">
                   <span className="home-text23">All features of FREE plan</span>
                 </div>
-                <div className="home-container18">
-                  <span className="home-premium-plan-features">
-                    Access to all movie screenings
-                  </span>
-                </div>
                 <div className="home-container19">
                   <span className="home-premium-plan-features1">
                     Priority seating at select screenings
