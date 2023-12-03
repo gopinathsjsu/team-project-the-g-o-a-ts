@@ -8,6 +8,7 @@ import Signup from "./components/Signup.js";
 import BookTickets from "./components/BookTickets.js";
 import Home from "./pages/home-page/Home.js";
 import Profile from "./components/Profile.js";
+import Admin from "./components/admin.js"
 import './style.css'
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/booktickets" element={<BookTickets/>} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/admin" element={<Admin/>} />
             </Routes>
         </div>
     );
