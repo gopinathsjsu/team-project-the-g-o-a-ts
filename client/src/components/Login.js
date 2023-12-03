@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "./login.css";
 import { Link } from 'react-router-dom';
 import md5 from 'md5';
+import "./login.css";
 
 const Login = () => {
   const [username, setUsername] = useState('username');
@@ -38,10 +38,11 @@ const Login = () => {
   }
 
   return (
-    <div className="login">
-      <h4 id>Sign In</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="text_area">
+    <div className="login-page">
+    <div className="login-container">
+      <h4 id="login-title">Sign In</h4>
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="text-area">
           <input
             type="text"
             id="username"
@@ -49,10 +50,10 @@ const Login = () => {
             value={username}
             onChange={handleInputChange}
             onFocus={setEmptyValue}
-            className="text_input"
+            className="text-input"
           />
         </div>
-        <div className="text_area">
+        <div className="text-area">
           <input
             type="text"
             id="password"
@@ -60,7 +61,7 @@ const Login = () => {
             value={password}
             onChange={handleInputChange}
             onFocus={setEmptyValue}
-            className="text_input"
+            className="text-input"
           />
         </div>
         <input
@@ -69,7 +70,8 @@ const Login = () => {
           className="btn"
         />
       </form>
-      <Link to="/signup">Sign Up</Link>
+      <Link to="/signup" className="signup-link">Sign Up</Link>
+    </div>
     </div>
   )
 }

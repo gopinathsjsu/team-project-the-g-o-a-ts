@@ -1,25 +1,40 @@
-.Signup {
-  background: #808080;
+.signup-page {
+  background: #542cf4;
   height: 100vh;
   width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-h4 {
-  font-family: "Segoe UI", bold;
+.singup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  width: 434px;
+  height: 550px;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#signup-title {
+  font-family: 'Segoe UI', bold;
   font-size: 35px;
   margin-top: 4rem;
   margin-bottom: 2rem;
 }
 
-form {
-  display: inline-block;
+.signup-form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 270px;
-  width: 350px;
-  margin-bottom: 170px;
+  width: 80%;
+  max-width: 350px;
+  margin-bottom: 2rem;
 }
-.text_area {
+
+.signup-text-area {
   align-content: center;
   border-radius: 22px;
   margin-bottom: 35px;
@@ -28,12 +43,13 @@ form {
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.text_input {
+.signup-input {
   margin-top: 1.2rem;
-  font-family: "Montserrat regular";
+  font-family: 'Montserrat regular';
   font-size: 20px;
   border: none;
   width: 80%;
+  margin-left:20px;
 }
 
 .btn {
@@ -43,28 +59,8 @@ form {
   border-radius: 30px;
   background: #000000;
   border: none;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 20px;
-  color: #ffffff;
+  color: #FFFFFF;
   cursor: pointer;
-}
-
-.login {
-  display: inline-block;
-  background: #ffffff;
-  width: 434px;
-  height: 550px;
-  margin-top: 10%;
-  border-radius: 22px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.link {
-  color: #0e4579;
-  font-family: "Montserrat light";
-  font-size: 18px;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  margin-top: -100px; /* Adjust this value to move the link up */
 }
