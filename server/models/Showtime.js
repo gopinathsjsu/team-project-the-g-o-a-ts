@@ -1,13 +1,20 @@
 const mongoose = require("mongoose");
 
 const showtimeSchema = new mongoose.Schema({
-  movieId: String,
-  theaterId: String,
-  screenId: Number,
-  startTime: Date,
-  endTime: Date,
-  price: Number,
+  movieId: {
+    type: mongoose.Schema.Types.ObjectId, // Use ObjectId for referencing
+    ref: "Movie", // Reference the Movie model
+    required: true,
+  },
+  theaterId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Theater",
+    required: true,
+  },
+  screenNumber: { type: Number, required: true },
+  startTime: { type: Date, required: true },
+  price: { type: Number, required: true },
   discountPrice: Number,
 });
 
-module.exports = mongoose.model("Showtime", showtimeSchema);
+module.exports = mongoose.model("Showtime", showtimeSchema, "showtimes");
