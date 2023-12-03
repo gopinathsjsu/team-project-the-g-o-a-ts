@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup.js";
 import BookTickets from "./components/BookTickets.js";
 import Home from "./pages/home-page/Home.js";
+import Profile from "./components/Profile.js";
 import './style.css'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<Signup/>} />
             <Route path="/booktickets" element={<BookTickets/>} />
+            <Route path="/profile" element={<Profile/>} />
             </Routes>
         </div>
     );
