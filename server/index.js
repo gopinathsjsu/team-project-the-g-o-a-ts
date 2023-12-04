@@ -7,6 +7,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const db = process.env.ATLAS_URI;
 
+const cors = require("cors");
+app.use(cors());
+
 // Routes
 const usersRoute = require("./routes/userRoute");
 app.use("/users", usersRoute);
