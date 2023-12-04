@@ -1,79 +1,78 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import md5 from 'md5';
+import { Link } from "react-router-dom";
 import "./login.css";
 
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import apiClient from "../api-client/apiClient";
+import { CanceledError } from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
-  const [username, setUsername] = useState('username');
-  const [password, setPassword] = useState('password');
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
+  const submitUser = async (e) => {
+    e.preventDefault();
+    let loggedIn = false;
+    await apiClient
+      .post("/users/login", {
+        email: e.target[0].value,
+        password: e.target[1].value,
+      })
+      .then(() => {
+        loggedIn = true;
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        console.log(err.message);
+        alert("Failed to login to user, check your information!");
+      });
 
-  const handleInputChange = (event) => {
-    const target = event.target;
-    let value = event.target.value;
-    const name = target.name;
-
-    if (target.name === "password") {
-      document.getElementById(name).type = "password";
-      value = md5(event.target.value);
+    if (loggedIn) {
+      console.log("Logged in User");
+      setShowSuccess(true);
+      await sleep(1750);
+      navigate("/");
     }
-
-    if (name === "username") {
-      setUsername(value);
-    } else if (name === "password") {
-      setPassword(value);
-    }
-
-    document.getElementById(name).style.fontFamily = "Montserrat black";
-  }
-
-  const setEmptyValue = (event) => {
-    const name = event.target.name
-    document.getElementById(name).value = "";
-  }
-
-  const handleSubmit = (event) => {
-    // Handle form submission logic
-    event.preventDefault();
-    // Add your logic here
-  }
+  };
 
   return (
     <div className="login-page">
-    <div className="login-container">
-      <h4 id="login-title">Sign In</h4>
-      <form onSubmit={handleSubmit} className="login-form">
-        <div className="text-area">
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={handleInputChange}
-            onFocus={setEmptyValue}
-            className="text-input"
-          />
-        </div>
-        <div className="text-area">
-          <input
-            type="text"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handleInputChange}
-            onFocus={setEmptyValue}
-            className="text-input"
-          />
-        </div>
-        <input
-          type="submit"
-          value="SIGN IN"
-          className="btn"
-        />
-      </form>
-      <Link to="/signup" className="signup-link">Sign Up</Link>
+      <div className="login-container">
+        <h4 id="login-title">Sign In</h4>
+        <Form onSubmit={submitUser}>
+          <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control type="email" placeholder="Enter Email" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control type="password" placeholder="Enter Password" />
+          </Form.Group>
+
+          {showSuccess ? (
+            <Button variant="success" disabled>
+              Logged In!
+            </Button>
+          ) : (
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          )}
+        </Form>
+
+        <Link to="/signup" className="signup-link">
+          Sign Up
+        </Link>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
 export default Login;

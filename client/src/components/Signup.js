@@ -21,6 +21,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const submitUser = async (e) => {
     e.preventDefault();
+    let signedUp = false;
     await apiClient
       .post("/users/register", {
         // signal: controller.signal,
@@ -29,15 +30,20 @@ const Signup = () => {
         password: e.target[2].value,
         role: "Member",
       })
+      .then(() => {
+        signedUp = true;
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         console.log(err.message);
         alert("Failed to create user, check if you already have an account!");
       });
-    console.log("Added User");
-    setShowSuccess(true);
-    await sleep(1750);
-    navigate("/");
+    if (signedUp) {
+      console.log("Added User");
+      setShowSuccess(true);
+      await sleep(1750);
+      navigate("/");
+    }
   };
 
   return (
