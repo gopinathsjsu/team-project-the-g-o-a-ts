@@ -10,6 +10,7 @@ import Home from "./pages/home-page/Home.js";
 import Profile from "./components/Profile.js";
 import Admin from "./components/admin.js"
 import './style.css'
+import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
     return (
