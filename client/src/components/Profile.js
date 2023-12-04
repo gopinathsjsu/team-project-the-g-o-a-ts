@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import apiClient from "../api-client/apiClient";
 import "./profile.css";
 
 const Profile = () => {
-  // Example data for movies and tickets
   const [moviesWithTickets, setMoviesWithTickets] = useState([
     { title: "Movie 1", tickets: 2 },
     { title: "Movie 2", tickets: 1 },
@@ -10,6 +10,33 @@ const Profile = () => {
   ]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [userData, setUserData] = useState({
+    userId: "",
+    name: "",
+    email: "",
+  });
+
+
+  const fetchUserById = async (userId) => {
+    try {
+      const response = await apiClient.get(`/users/getuser/${userId}`);
+      console.log("Fetched User:", response.data);
+      // Process the response data as needed
+      setUserData(response.data);
+    } catch (err) {
+      console.error(err.message);
+      alert("Failed to fetch user. Please check the user ID.");
+    }
+  };
+
+    useEffect(() => {
+      fetchUserById('656bda32f26cbf5516c60c8e')
+  }, []);
+
+  console.log(userData);
+  
+
+  
 
   const handleMovieChange = (index) => {
     setSelectedMovie(moviesWithTickets[index]);
@@ -33,10 +60,10 @@ const Profile = () => {
           </div>
           <div class="col-md-6">
             <div class="profile-head">
-              <h5>Jane Smith</h5>
+              <h5>{userData.name}</h5>
               <h6>Premium Member</h6>
               <p class="proile-rating">
-                Points : <span>100</span>
+                Points : <span>{userData.rewardsPoints}</span>
               </p>
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -67,12 +94,8 @@ const Profile = () => {
         <div class="row">
           <div class="col-md-4">
             <div class="profile-work">
-              <p>WORK LINK</p>
-              <a href="">Website Link</a>
-              <br />
-              <a href="">Bootply Profile</a>
-              <p>SKILLS</p>
-              <a href="">Web Designer</a>
+              <p>Movies Watched in the past 30 days</p>
+              <a href="">Barbie Movie</a>
               <br />
             </div>
           </div>
@@ -84,36 +107,28 @@ const Profile = () => {
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <div class="row">
-                  <div class="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
                     <label>User Id</label>
                   </div>
-                  <div class="col-md-6">
-                    <p>JaneSmith123</p>
+                  <div className="col-md-6">
+                    <p>{userData._id}</p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
                     <label>Name</label>
                   </div>
-                  <div class="col-md-6">
-                    <p>Jane Smith</p>
+                  <div className="col-md-6">
+                    <p>{userData.name}</p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
                     <label>Email</label>
                   </div>
-                  <div class="col-md-6">
-                    <p>janesmith@gmail.com</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Phone</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>123 456 7890</p>
+                  <div className="col-md-6">
+                    <p>{userData.email}</p>
                   </div>
                 </div>
                 <div className="dropdown-container">
@@ -141,95 +156,11 @@ const Profile = () => {
                   </p>
                 )}
               </div>
-              <div
-                class="tab-pane fade"
-                id="profile"
-                role="tabpanel"
-                aria-labelledby="profile-tab"
-              >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Experience</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Hourly Rate</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>10$/hr</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Total Projects</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>230</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>English Level</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Availability</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>6 months</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Your Bio</label>
-                    <br />
-                    <p>Your detail description</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </form>
     </div>
-
-    // <div className="profile-container">
-    //   <link
-    //     rel="stylesheet"
-    //     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    //   />
-    //   <div className="profilecard">
-    //     <img className="profile-image" src="./img.jpg" alt="John" />
-    //     <h1>John Doe</h1>
-    //     <p className="title">Premium Member</p>
-    //     <p className="points">Points: <span className="points-value">100</span></p>
-    //     <div className="dropdown-container">
-    //       <label>Select a Movie: </label>
-    //       <select
-    //         value={selectedMovie ? selectedMovie.title : ""}
-    //         onChange={(e) => handleMovieChange(e.target.selectedIndex - 1)}
-    //       >
-    //         <option value="" disabled>Select a movie</option>
-    //         {moviesWithTickets.map((movie, index) => (
-    //           <option key={index} value={movie.title}>
-    //             {movie.title} - {movie.tickets} tickets
-    //           </option>
-    //         ))}
-    //       </select>
-    //     </div>
-    //     {selectedMovie && (
-    //       <p>You have {selectedMovie.tickets} tickets for {selectedMovie.title}.</p>
-    //     )}
-    //   </div>
-    // </div>
   );
 };
 
