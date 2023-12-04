@@ -1,5 +1,5 @@
 # the-g-o-a-ts
-Alan Park
-Larry Liu
-Matthew Wong
-Nguyen Bui
+1. Alan Park
+2. Larry Liu
+3. Matthew Wong
+4. Nguyen Bui
