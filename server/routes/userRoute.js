@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 router.post("/register", async (req, res) => {
   try {
-    const hashedPw = await bcrypt.hash(req.body.password, 10);
-    const user = new User({ ...req.body, password: hashedPw });
+    const user = new User({ ...req.body });
     await user.save();
     res.status(201).send("User created successfully");
   } catch (error) {
@@ -24,6 +22,26 @@ router.get("/getuser/:id", async (req, res, next) => {
     res.json(user);
   } catch (error) {
     res.status(500).send("Error retreiving users");
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const username = req.body.email;
+    const password = req.body.password;
+    const users = await User.find();
+    const user = users.filter(
+      (u) => u.email == username && u.password == password
+    );
+    console.log(user);
+    if (user.length <= 0) {
+      res.status(500).send("Could not find user");
+    } else {
+      res.json(user);
+    }
+  } catch (error) {
+    res.status(500).send("Could not find user");
+    console.error(error);
   }
 });
 
