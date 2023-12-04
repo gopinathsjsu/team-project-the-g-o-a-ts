@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { jwtDecode } from "jwt-decode";
 import apiClient from "../api-client/apiClient";
 import "./profile.css";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Profile = () => {
+  const { userData } = useContext(AuthContext);
+
   const [moviesWithTickets, setMoviesWithTickets] = useState([
     { title: "Movie 1", tickets: 2 },
     { title: "Movie 2", tickets: 1 },
@@ -10,37 +14,14 @@ const Profile = () => {
   ]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [userData, setUserData] = useState({
-    userId: "",
-    name: "",
-    email: "",
-  });
-
-
-  const fetchUserById = async (userId) => {
-    try {
-      const response = await apiClient.get(`/users/getuser/${userId}`);
-      console.log("Fetched User:", response.data);
-      // Process the response data as needed
-      setUserData(response.data);
-    } catch (err) {
-      console.error(err.message);
-      alert("Failed to fetch user. Please check the user ID.");
-    }
-  };
-
-    useEffect(() => {
-      fetchUserById('656bda32f26cbf5516c60c8e')
-  }, []);
-
-  console.log(userData);
-  
-
-  
 
   const handleMovieChange = (index) => {
     setSelectedMovie(moviesWithTickets[index]);
   };
+
+  if (!userData) {
+    return <div>Loading...</div>; // may change to just show user profile, but hide the buttons for editing etc.
+  }
 
   return (
     <div class="container emp-profile">
@@ -83,12 +64,7 @@ const Profile = () => {
             </div>
           </div>
           <div class="col-md-2">
-            <input
-              type="submit"
-              class="profile-edit-btn"
-              name="btnAddMore"
-              value="Edit Profile"
-            />
+            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
           </div>
         </div>
         <div class="row">
@@ -101,12 +77,7 @@ const Profile = () => {
           </div>
           <div class="col-md-8">
             <div class="tab-content profile-tab" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div className="row">
                   <div className="col-md-6">
                     <label>User Id</label>
@@ -135,9 +106,7 @@ const Profile = () => {
                   <label>Select a Movie: </label>
                   <select
                     value={selectedMovie ? selectedMovie.title : ""}
-                    onChange={(e) =>
-                      handleMovieChange(e.target.selectedIndex - 1)
-                    }
+                    onChange={(e) => handleMovieChange(e.target.selectedIndex - 1)}
                   >
                     <option value="" disabled>
                       Select a movie
@@ -151,8 +120,7 @@ const Profile = () => {
                 </div>
                 {selectedMovie && (
                   <p>
-                    You have {selectedMovie.tickets} tickets for{" "}
-                    {selectedMovie.title}.
+                    You have {selectedMovie.tickets} tickets for {selectedMovie.title}.
                   </p>
                 )}
               </div>

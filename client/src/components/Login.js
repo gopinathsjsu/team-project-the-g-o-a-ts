@@ -9,13 +9,28 @@ import Row from "react-bootstrap/Row";
 import apiClient from "../api-client/apiClient";
 import { CanceledError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthProvider";
+import { jwtDecode } from "jwt-decode";
+import { fetchUserById } from "../common/apiUtils";
 
 const Login = () => {
+  const { login } = useAuth();
+  /* Sending requests to protected routes */
+  //   const fetchProtectedData = async () => {
+  //     const response = await fetch('/protected', {
+  //         headers: {
+  //             'Authorization': `Bearer ${localStorage.getItem('token')}`
+  //         }
+  //     });
+  //     // ...
+  // };
+
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
+
   const submitUser = async (e) => {
     e.preventDefault();
     let loggedIn = false;
@@ -24,8 +39,16 @@ const Login = () => {
         email: e.target[0].value,
         password: e.target[1].value,
       })
-      .then(() => {
-        loggedIn = true;
+      .then(async (res) => {
+        const token = res.data.accessToken;
+        if (token) {
+          localStorage.setItem("token", token);
+          loggedIn = true;
+          const decoded = jwtDecode(token);
+          const userId = decoded.id;
+          const userData = await fetchUserById(userId);
+          login(token, userData);
+        }
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;

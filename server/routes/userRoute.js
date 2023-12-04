@@ -1,6 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+require("dotenv").config({ path: "../config.env" });
+
+/* For protected routes */
+// const authenticateToken = require('./authMiddleware');
+
+// // Use the middleware in your routes
+// router.get('/protected', authenticateToken, (req, res) => {
+//     // Protected route logic
+// });
 
 router.post("/register", async (req, res) => {
   try {
@@ -29,19 +39,18 @@ router.post("/login", async (req, res) => {
   try {
     const username = req.body.email;
     const password = req.body.password;
-    const users = await User.find();
-    const user = users.filter(
-      (u) => u.email == username && u.password == password
-    );
+    const user = await User.findOne({ email: username, password: password });
     console.log(user);
-    if (user.length <= 0) {
-      res.status(500).send("Could not find user");
+    if (user) {
+      const userJWT = { id: user.id, name: user.name, email: user.email };
+      const accessToken = jwt.sign(userJWT, process.env.JWT_SECRET, { expiresIn: "1h" });
+      res.json({ accessToken });
     } else {
-      res.json(user);
+      res.status(401).send("Invalid credentials");
     }
   } catch (error) {
-    res.status(500).send("Could not find user");
     console.error(error);
+    res.status(500).send("Server error");
   }
 });
 
