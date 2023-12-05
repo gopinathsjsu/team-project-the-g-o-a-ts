@@ -30,6 +30,12 @@ const Admin = (props) => {
         getFutureMovies();
     },[])
 
+    if(!currentMovies || !futureMovies) {
+        return <p>
+            Loading....
+        </p>
+    }
+
   return (
         <div id="layout-wrapper">
             <div class="main-content">       
