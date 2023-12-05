@@ -23,6 +23,16 @@ router.get("/getbookings", async (req, res) => {
   }
 });
 
+
+router.get("/getbookingsbyid/:id", async (req, res) => {
+  try {
+    const bookings = await Booking.find({ userId: req.params.id });
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).send("Error retreiving bookings");
+  }
+});
+
 router.delete("/remove/:id", async (req, res) => {
   try {
     const deleted = await Booking.findByIdAndDelete(req.params.id);
