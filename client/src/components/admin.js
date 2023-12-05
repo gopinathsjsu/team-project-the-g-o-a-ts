@@ -316,69 +316,30 @@ const Admin = (props) => {
                                 <div className="home-gallery1">
                                     <h1 className="home-gallery-heading heading2">Now Playing</h1>
                                     <div className="home-container29">
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1699464627/amc-cdn/production/2/movies/71000/70972/PosterDynamic/160262.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695218026/amc-cdn/production/2/movies/69700/69677/PosterDynamic/158471.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName1"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1694700678/amc-cdn/production/2/movies/66300/66317/PosterDynamic/157258.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName3"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1693920876/amc-cdn/production/2/movies/74100/74142/PosterDynamic/156768.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName2"
-                                    ></GalleryCard3>
-                                </div>
+                                    {
+                                        currentMovies.map((movie) => (
+                                            <GalleryCard3
+                                                image_src={movie.imageUrl}
+                                                rootClassName="rootClassName"
+                                            ></GalleryCard3>
+                                        ))
+                                    }
+                                    </div>
                                 </div>
                             </div>
                             <div className="home-gallery">
                                 <div className="home-gallery1">
-                                <h1 className="home-gallery-heading heading2">Coming Soon</h1>
-                                <div className="home-container29">
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695831399/amc-cdn/production/2/movies/62400/62364/PosterDynamic/158798.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697636395/amc-cdn/production/2/movies/73200/73172/PosterDynamic/159468.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName1"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697117324/amc-cdn/production/2/movies/72800/72780/Poster/348916R1.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName3"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1696433843/amc-cdn/production/2/movies/73200/73177/PosterDynamic/159108.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName2"
-                                    ></GalleryCard3>
-                                </div>
-                                </div>
-                            </div>
-                            <div className="home-gallery">
-                                <div className="home-gallery1">
-                                <h1 className="home-gallery-heading heading2">All Movies</h1>
-                                <div className="home-container29">
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695831399/amc-cdn/production/2/movies/62400/62364/PosterDynamic/158798.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697636395/amc-cdn/production/2/movies/73200/73172/PosterDynamic/159468.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName1"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697117324/amc-cdn/production/2/movies/72800/72780/Poster/348916R1.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName3"
-                                    ></GalleryCard3>
-                                    <GalleryCard3
-                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1696433843/amc-cdn/production/2/movies/73200/73177/PosterDynamic/159108.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-                                    rootClassName="rootClassName2"
-                                    ></GalleryCard3>
-                                </div>
+                                    <h1 className="home-gallery-heading heading2">Coming Soon</h1>
+                                    <div className="home-container29">
+                                    {
+                                        futureMovies.map((movie) => (
+                                            <GalleryCard3
+                                                image_src={movie.imageUrl}
+                                                    rootClassName="rootClassName"
+                                                ></GalleryCard3>
+                                            ))
+                                    }
+                                    </div>
                                 </div>
                             </div>
                         </div>
