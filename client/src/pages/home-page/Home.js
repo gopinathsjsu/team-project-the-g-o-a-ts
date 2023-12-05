@@ -251,59 +251,49 @@ const Home = (props) => {
       <div className="home-gallery">
         <div className="home-gallery1">
           <h1 className="home-gallery-heading heading2">
-            Explore the Movie Theater Club
+            Now Playing
           </h1>
-          <span className="home-gallery-sub-heading">
-            Take a look at some snapshots of our application
-          </span>
           <div className="home-container29">
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1699464627/amc-cdn/production/2/movies/71000/70972/PosterDynamic/160262.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               rootClassName="rootClassName"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1534250617995-d16425086b91?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695218026/amc-cdn/production/2/movies/69700/69677/PosterDynamic/158471.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               rootClassName="rootClassName1"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1669380981740-18db28620b8b?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1694700678/amc-cdn/production/2/movies/66300/66317/PosterDynamic/157258.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               rootClassName="rootClassName3"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1523207911345-32501502db22?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1693920876/amc-cdn/production/2/movies/74100/74142/PosterDynamic/156768.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               rootClassName="rootClassName2"
             ></GalleryCard3>
+          </div>
+        </div>
+      </div>
+      <div className="home-gallery">
+        <div className="home-gallery1">
+          <h1 className="home-gallery-heading heading2">
+            Coming Soon
+          </h1>
+          <div className="home-container29">
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1563286130-945bc9d7803c?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName4"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695831399/amc-cdn/production/2/movies/62400/62364/PosterDynamic/158798.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              rootClassName="rootClassName"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1604975701397-6365ccbd028a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName5"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697636395/amc-cdn/production/2/movies/73200/73172/PosterDynamic/159468.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              rootClassName="rootClassName1"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1589132135595-f0b025ae51ec?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName6"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697117324/amc-cdn/production/2/movies/72800/72780/Poster/348916R1.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              rootClassName="rootClassName3"
             ></GalleryCard3>
             <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1594321120041-00d204971461?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName7"
-            ></GalleryCard3>
-            <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1559127898-2a67ad2680fe?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName8"
-            ></GalleryCard3>
-            <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1605034949929-6af5f19593b3?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName9"
-            ></GalleryCard3>
-            <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1689903213571-34ce479566ca?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName10"
-            ></GalleryCard3>
-            <GalleryCard3
-              image_src="https://images.unsplash.com/photo-1559422819-2cfa4cfd63f5?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
-              rootClassName="rootClassName11"
+              image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1696433843/amc-cdn/production/2/movies/73200/73177/PosterDynamic/159108.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+              rootClassName="rootClassName2"
             ></GalleryCard3>
           </div>
         </div>
