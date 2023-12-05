@@ -13,9 +13,6 @@ router.post("/createmovie", async (req, res) => {
   }
 });
 
-/**
- * for debugging
- */
 router.get("/getfuturemovies", async (req, res) => {
   try {
     const movies = await Movie.find();
@@ -52,6 +49,20 @@ router.get("/getmovies/:id", async (req, res) => {
   try {
     const movie = await Movie.findById(req.params.id);
     res.json(movie);
+  } catch (error) {
+    res.status(500).send("Error retreiving movies");
+  }
+});
+
+router.put("/edit/:id", async (req, res) => {
+  try {
+    const movieId = req.params.id;
+    const updatedData = req.body;
+    const updatedMovie = await Movie.findByIdAndUpdate(movieId, updatedData, { new: true });
+    if (!updatedMovie) {
+      return res.status(404).send("Movie not found");
+    }
+    res.json(updatedMovie);
   } catch (error) {
     res.status(500).send("Error retreiving movies");
   }
