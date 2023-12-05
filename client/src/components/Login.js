@@ -80,19 +80,15 @@ const Login = () => {
           </Form.Group>
 
           {showSuccess ? (
-            <Button variant="success" disabled>
+            <Button variant="success" disabled className="form-btn">
               Logged In!
             </Button>
           ) : (
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="form-btn">
               Login
             </Button>
           )}
         </Form>
-
-        <Link to="/signup" className="signup-link">
-          Sign Up
-        </Link>
       </div>
     </div>
   );

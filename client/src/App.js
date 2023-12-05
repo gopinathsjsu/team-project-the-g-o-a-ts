@@ -14,13 +14,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { AuthProvider } from "./contexts/AuthProvider.js";
 import { Link } from "react-router-dom";
 import ReAuthenticator from "./common/ReAuthenticator.js";
+import permissionDenied from "./components/permissionDenied.js";
 
 const App = () => {
   return (
     <AuthProvider>
       <ReAuthenticator />
-      <Link to="/profile">Profile</Link>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/booktickets" element={<BookTickets />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/permissionDenied" element={<permissionDenied />} />
       </Routes>
     </AuthProvider>
   );
