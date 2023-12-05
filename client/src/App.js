@@ -16,6 +16,7 @@ import ReAuthenticator from "./common/ReAuthenticator.js";
 import permissionDenied from "./components/permissionDenied.js";
 import BookingTickets from "./components/BookingTickets.js";
 import Checkout from "./components/Booking/Checkout.js";
+import ProtectedRoute from "./common/ProtectedRoute.js";
 
 const App = () => {
   return (
@@ -28,7 +29,14 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/bookingtickets/:showtimeId" element={<BookingTickets />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/permissionDenied" element={<permissionDenied />} />
         <Route path="/selectMovie" element={<SelectMovie />} />
         <Route path="/checkout" element={<Checkout />} />
