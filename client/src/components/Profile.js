@@ -42,7 +42,7 @@ const Profile = () => {
           <div class="col-md-6">
             <div class="profile-head">
               <h5>{userData.name}</h5>
-              <h6>Premium Member</h6>
+              <p>{userData.membershipType + " " + userData.role}</p>
               <p class="proile-rating">
                 Points : <span>{userData.rewardsPoints}</span>
               </p>
