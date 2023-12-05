@@ -12,9 +12,9 @@ const bookingSchema = new mongoose.Schema({
     required: true,
   },
   seatsBooked: {
-    type: [String],
+    type: [Number],
     required: true,
-  }, // Array of seats '2a' '2b' '3g' etc.
+  }, // Array of seats '2' '1' '3' etc.
   totalPrice: {
     type: Number,
     required: true,

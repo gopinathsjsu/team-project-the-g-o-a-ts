@@ -13,9 +13,20 @@ router.post("/createshowtime", async (req, res) => {
   }
 });
 
-/**
- * for debugging
- */
+
+router.get("/getshowtime/:id", async (req, res) => {
+  try {
+    const showtime = await Showtime.findById(req.params.id);
+    if (!showtime) {
+      return res.status(404).send("Could not find showtime with id");
+    }
+    console.log(showtime);
+    res.json(showtime);
+  } catch (error) {
+    res.status(500).send("Error retreiving showtimes");
+  }
+});
+
 router.get("/getshowtimes", async (req, res) => {
   try {
     const showtimes = await Showtime.find();
