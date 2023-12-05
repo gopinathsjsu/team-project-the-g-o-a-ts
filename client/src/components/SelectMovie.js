@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./selectmovie.css";
+import "../css/selectmovie.css";
 import apiClient from "../api-client/apiClient";
 
 export default function SelectMovie() {
