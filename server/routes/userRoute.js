@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.put("/edit/:id", authenticateToken, async (req, res, next) => {
+router.put("/edit/:id", async (req, res, next) => {
   try {
     const userId = req.params.id;
     const updatedData = req.body;

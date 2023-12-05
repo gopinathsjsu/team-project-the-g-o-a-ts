@@ -4,6 +4,7 @@ import List from "./List.js";
 import { Container, Grid } from "@mui/material";
 import apiClient from "../api-client/apiClient.js";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BookingTickets = () => {
   const [showtime, setShowtime] = useState([]);
@@ -12,6 +13,7 @@ const BookingTickets = () => {
   const [theater, setTheater] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const { showtimeId } = useParams();
+  const navigate = useNavigate();
 
   const getShowtimesById = async () => {
     try {
@@ -67,19 +69,19 @@ const BookingTickets = () => {
 
   const [selectedSeatIds, setSelectedSeatIds] = useState([]);
 
+  // Determine if we should use the discount price
+  const shouldUseDiscountPrice = () => {
+    if (!showtime || !showtime.startTime) return false;
+    const showtimeDate = new Date(showtime.startTime);
+    const isTuesday = showtimeDate.getDay() === 2;
+    const isBefore6PM = showtimeDate.getHours() < 18;
+    return isTuesday || isBefore6PM;
+  };
+
   const handleSeatClick = (seatId) => {
     if (occupiedSeats.includes(seatId)) {
       return; // exit if seat is already occupied
     }
-
-    // Determine if we should use the discount price
-    const shouldUseDiscountPrice = () => {
-      if (!showtime || !showtime.startTime) return false;
-      const showtimeDate = new Date(showtime.startTime);
-      const isTuesday = showtimeDate.getDay() === 2;
-      const isBefore6PM = showtimeDate.getHours() < 18;
-      return isTuesday || isBefore6PM;
-    };
 
     const priceToUse = shouldUseDiscountPrice() ? showtime.discountPrice : showtime.price;
 
@@ -119,6 +121,7 @@ const BookingTickets = () => {
 
     // Store the booking details in session storage
     localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+    navigate("/checkout");
   };
 
   const renderSeats = () => {
@@ -152,7 +155,10 @@ const BookingTickets = () => {
           {renderSeats()}
         </Grid>
       </Container>
-      <p>Total price: ${totalPrice}</p>
+
+      <p>
+        Total price: ${totalPrice} {shouldUseDiscountPrice() ? <span>(Discounted Rate)</span> : null}
+      </p>
       <button onClick={submitSeats}>Checkout</button>
     </>
   );

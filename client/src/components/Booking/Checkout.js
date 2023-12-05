@@ -3,9 +3,16 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { Button, Container, Divider, Grid, TextField } from "@mui/material";
 import styled from "@emotion/styled";
 import apiClient from "../../api-client/apiClient";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData, updateUserData } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const [showSuccess, setShowSuccess] = useState(false);
   const [bookingData, setBookingData] = useState({
     selectedSeats: [],
     totalPrice: 0,
@@ -23,6 +30,7 @@ const Checkout = () => {
   const [showtimeDate, setShowtimeDate] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [rewardsPointsUsed, setRewardsPointsUsed] = useState("");
+  const [updatedUserData, setUpdatedUserData] = useState(null);
 
   useEffect(() => {
     const storedBookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
@@ -58,8 +66,6 @@ const Checkout = () => {
     if (userData && userData.membershipType == "Premium") {
       setBookingFee(0);
     }
-    // if (userData) {
-    // }
   }, [userData]);
 
   const postBooking = async () => {
@@ -81,6 +87,52 @@ const Checkout = () => {
 
       const totalSeatsOccupied = [...bookingData.occupiedSeats, ...bookingData.selectedSeats];
       console.log(totalSeatsOccupied);
+      await apiClient
+        .put(`/showtimes/update/${bookingData.showtimeId}`, {
+          seatsBooked: totalSeatsOccupied,
+        })
+        .then(async (res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      const pointsAdjustment = userData.rewardsPoints - rewardsPointsUsed + Math.floor(totalPrice - rewardsPointsUsed);
+      await apiClient
+        .put(`/users/edit/${userData._id}`, {
+          rewardsPoints: pointsAdjustment,
+        })
+        .then(async (res) => {
+          updateUserData(res.data); // update user context
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const postBookingNotLoggedIn = async () => {
+    try {
+      await apiClient
+        .post("/bookings/createbooking", {
+          userName: customerInfo.name,
+          userEmail: customerInfo.email,
+          showtimeId: bookingData.showtimeId,
+          movieId: bookingData.movieId,
+          seatsBooked: bookingData.selectedSeats,
+          totalPrice: totalPrice,
+        })
+        .then(async (res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      const totalSeatsOccupied = [...bookingData.occupiedSeats, ...bookingData.selectedSeats];
       await apiClient
         .put(`/showtimes/update/${bookingData.showtimeId}`, {
           seatsBooked: totalSeatsOccupied,
@@ -123,16 +175,16 @@ const Checkout = () => {
     return true;
   };
 
-  const completeCheckout = () => {
+  const completeCheckout = async () => {
     if (userData) {
-      console.log("Submitting", userData._id, bookingData);
       postBooking();
     } else {
-      console.log("Submitting", customerInfo, bookingData);
+      postBookingNotLoggedIn();
     }
+    setShowSuccess(true);
+    await sleep(1750);
     localStorage.removeItem("bookingDetails");
-
-    // Navigate to a confirmation page or reset the state as needed
+    navigate("/");
   };
 
   if (localStorage.getItem("bookingDetails") == null) {
@@ -193,6 +245,9 @@ const Checkout = () => {
                   onChange={(e) => setRewardsPointsUsed(e.target.value)}
                   style={{ width: "80%" }}
                 />
+                <p>
+                  <i>Using saved payment method **21</i>
+                </p>
               </>
             ) : (
               <form>
@@ -231,14 +286,35 @@ const Checkout = () => {
           <br />
           <Grid container>
             <Grid item xs={8}>
-              <p>
-                <strong>Total:</strong> ${totalPrice.toFixed(2)}
-              </p>
+              {validateRewardsPoints() && rewardsPointsUsed !== "" ? (
+                <>
+                  <p>
+                    <strong>Rewards Points Used:</strong> {rewardsPointsUsed}
+                  </p>
+                  <p>
+                    <strong>Total:</strong> ${(totalPrice - rewardsPointsUsed).toFixed(2)}
+                  </p>
+                </>
+              ) : (
+                <p>
+                  <strong>Total:</strong> ${totalPrice.toFixed(2)}
+                </p>
+              )}
             </Grid>
             <Grid item xs={4}>
-              <Button variant="contained" onClick={completeCheckout} disabled={!validateRewardsPoints()}>
-                Purchase
-              </Button>
+              {showSuccess ? (
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#4caf50", color: "white", opacity: 0.5 }}
+                  disabled
+                >
+                  Success!
+                </Button>
+              ) : (
+                <Button variant="contained" onClick={completeCheckout} disabled={!validateRewardsPoints()}>
+                  Purchase
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
