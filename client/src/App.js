@@ -11,10 +11,7 @@ import Profile from "./components/Profile.js";
 import Admin from "./components/admin.js";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { AuthProvider } from "./contexts/AuthProvider.js";
-import { Link } from "react-router-dom";
-import ReAuthenticator from "./common/ReAuthenticator.js";
-import permissionDenied from "./components/permissionDenied.js";
+import SelectMovie from "./components/SelectMovie.js";
 
 const App = () => {
   return (
@@ -29,6 +26,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/permissionDenied" element={<permissionDenied />} />
+            <Route path="/selectMovie" element={<SelectMovie/>} />
       </Routes>
     </AuthProvider>
   );

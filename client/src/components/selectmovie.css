@@ -1,0 +1,43 @@
+#selectmoviepage {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+#selectmoviepage section {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#selectmoviepage label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+#selectmoviepage select,
+#selectmoviepage input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#selectmoviepage button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 15px 20px; 
+    margin-top: 10px; 
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  #selectmoviepage button:hover {
+    background-color: #45a049;
+  }

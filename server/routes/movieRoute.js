@@ -26,4 +26,14 @@ router.get("/getmovies", async (req, res) => {
   }
 });
 
+router.get("/getmovies/:id", async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    res.json(movie);
+  } catch (error) {
+    res.status(500).send("Error retreiving movies");
+  }
+});
+
+
 module.exports = router;
