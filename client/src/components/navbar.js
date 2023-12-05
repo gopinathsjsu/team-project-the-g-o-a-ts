@@ -24,12 +24,19 @@ export default function Navbar() {
                 Home
               </Link>
               <span className="home-nav3">Features</span>
-              <span className="home-nav4">Pricing</span>
+              {userData != null && userData.role == "Admin" ? (
+                <Link to="/admin" className="nav-link home-nav4">
+                  Dashboard
+                </Link>
+              ) : null}
             </nav>
             <div className="home-buttons">
-              <Link to="/checkout" className="nav-link button home-login">
-                Cart
-              </Link>
+              {userData != null && userData.role == "Admin" ? null : (
+                <Link to="/checkout" className="nav-link button home-login">
+                  Cart
+                </Link>
+              )}
+
               {userData != null ? (
                 <>
                   <Link to="/profile" className="nav-link button home-login">

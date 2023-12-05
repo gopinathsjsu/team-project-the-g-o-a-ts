@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ["Member", "Non-Member", "Admin"] },
   membershipType: {
     type: String,
-    enum: ["Regular", "Premium"],
+    enum: ["Regular", "Premium", "Employee"],
     default: "Regular",
   },
   membershipStartDate: { type: Date, default: Date.now() },

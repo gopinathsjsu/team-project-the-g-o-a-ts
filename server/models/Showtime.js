@@ -17,6 +17,7 @@ const showtimeSchema = new mongoose.Schema({
   discountPrice: Number,
   seatsBooked: {
     type: [Number],
+    default: [],
   },
 });
 
