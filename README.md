@@ -24,5 +24,14 @@
 # Diagrams
 
 (Architecture Diagram)
+
 ![arch drawio](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/d9b97c20-3580-4da1-87ce-1c086f8e759f)
+
+# Project Journal 
+
+https://docs.google.com/document/d/13ucGj9Hi09OVoGCP6DF5dnGkmMlzioqwdCyof6rkP0I/edit?usp=sharing
+
+# Google Sheet
+
+https://docs.google.com/spreadsheets/d/1BX7kkyM5GyZoOselhOCogPDAuj0di0zQbVvVbhIJRPs/edit?usp=sharing
 
