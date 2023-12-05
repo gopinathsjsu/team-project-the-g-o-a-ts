@@ -1,159 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
 
+import GalleryCard3 from "./gallery-card3";
+import apiClient from '../api-client/apiClient';
+
 const Admin = (props) => {
+    const [currentMovies, setCurrentMovies] = useState(null);
+    const [futureMovies, setFutureMovies] = useState(null);
+
+    const getCurrentMovies = async() => {
+        await apiClient
+        .get("/movies/getcurrentmovies")
+        .then(async (res) => {
+            setCurrentMovies(res.data)
+        })
+    }
+
+    const getFutureMovies = async() => {
+        await apiClient
+        .get("/movies/getfuturemovies")
+        .then(async (res) => {
+            setFutureMovies(res.data)
+        })
+    }
+
+    useEffect(() => {
+        getCurrentMovies();
+        getFutureMovies();
+    },[])
+
   return (
         <div id="layout-wrapper">
-            <div class="main-content">
-                <header id="page-topbar">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <div class="d-flex align-items-center">
-                                <button type="button" class="btn btn-sm mr-2 d-lg-none header-item" data-toggle="collapse" data-target="#topnav-menu-content">
-                                    <i class="fa fa-fw fa-bars"></i>
-                                </button>
-                                <div class="header-breadcumb">
-                                    <h2 class="header-title">Dashboard</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-
-                <div class="topnav">
-                    <div class="container-fluid">
-                        <nav class="navbar navbar-dark navbar-expand-lg topnav-menu">
-                            
-                            <div class="collapse navbar-collapse" id="topnav-menu-content">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index.html">
-                                            <i class="feather-home mr-2"></i>Dashboards
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather-copy mr-2"></i>Pages <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-auth" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Auth Pages <div class="arrow-down"></div>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-auth">
-                                                    <a href="auth-login.html" class="dropdown-item">Login</a>
-                                                    <a href="auth-register.html" class="dropdown-item">Register</a>
-                                                    <a href="auth-recoverpw.html" class="dropdown-item">Recover Password</a>
-                                                    <a href="auth-lock-screen.html" class="dropdown-item">Lock Screen</a>
-                                                    <a href="auth-404.html" class="dropdown-item">Error 404</a>
-                                                    <a href="auth-500.html" class="dropdown-item">Error 500</a>
-                                                </div>
-                                            </div>
-                                            <a href="pages-invoice.html" class="dropdown-item">Invoice</a>
-                                            <a href="pages-starter.html" class="dropdown-item">Starter Page</a>
-                                            <a href="pages-maintenance.html" class="dropdown-item">Maintenance</a>
-                                            <a href="pages-faqs.html" class="dropdown-item">FAQs</a>
-                                            <a href="pages-pricing.html" class="dropdown-item">Pricing</a>
-                                            <a href="pages-team.html" class="dropdown-item">Team</a>
-                                        </div>
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather-briefcase mr-2"></i>UI Elements <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-components">
-                                            <a href="ui-typography.html" class="dropdown-item">Typography</a>
-                                            <a href="ui-cards.html" class="dropdown-item">Cards</a>
-                                            <a href="ui-buttons.html" class="dropdown-item">Buttons</a>
-                                            <a href="ui-modals.html" class="dropdown-item">Modals</a>
-                                            <a href="ui-tabs.html" class="dropdown-item">Tabs</a>
-                                            <a href="ui-progressbars.html" class="dropdown-item">Progress Bars</a>
-                                            <a href="ui-toasts.html" class="dropdown-item">Toasts</a>
-                                            <a href="ui-carousel.html" class="dropdown-item">Carousel</a>
-                                            <a href="ui-embeds.html" class="dropdown-item">Embeds</a>
-                                            <a href="ui-tooltips-popovers.html" class="dropdown-item">Tooltips & Popovers</a>
-                                            <a href="ui-media-objects.html" class="dropdown-item">Media Objects</a>
-                                            <a href="ui-general.html" class="dropdown-item">General</a>
-                                            <a href="ui-grid.html" class="dropdown-item">Grid</a>
-                                            <a href="ui-spinners.html" class="dropdown-item">Spinners</a>
-                                            <a href="ui-scrollspy.html" class="dropdown-item">Scrollspy</a>
-                                            <a href="ui-sweetalerts.html" class="dropdown-item">Sweet Alerts</a>
-                                        </div>
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather-bar-chart-2 mr-2"></i>Charts <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-charts">
-                                            <a href="charts-morris.html" class="dropdown-item">Morris</a>
-                                            <a href="charts-google.html" class="dropdown-item">Google</a>
-                                            <a href="charts-chartjs.html" class="dropdown-item">Chartjs</a>
-                                            <a href="charts-sparkline.html" class="dropdown-item">Sparkline</a>
-                                            <a href="charts-knob.html" class="dropdown-item">Jquery Knob</a>
-                                        </div>
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-forms" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather-disc mr-2"></i>Forms <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-forms">
-                                            <a href="forms-elements.html" class="dropdown-item">Elements</a>
-                                            <a href="forms-plugins.html" class="dropdown-item">Plugins</a>
-                                            <a href="forms-validation.html" class="dropdown-item">Validation</a>
-                                            <a href="forms-mask.html" class="dropdown-item">Masks</a>
-                                            <a href="forms-quilljs.html" class="dropdown-item">Quilljs</a>
-                                            <a href="forms-uploads.html" class="dropdown-item">File Uploads</a>
-                                        </div>
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather-book-open mr-2"></i>More <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-more">
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-tables" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Tables <div class="arrow-down"></div>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-tables">
-                                                    <a href="tables-basic.html" class="dropdown-item">Basic Tables</a>
-                                                    <a href="tables-datatables.html" class="dropdown-item">Data Tables</a>
-                                                </div>
-                                            </div>
-                                            <a href="calendar.html" class="dropdown-item">Calendar</a>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-icons" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Icons <div class="arrow-down"></div>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-icons">
-                                                    <a href="icons-feather.html" class="dropdown-item">Feather Icons</a>
-                                                    <a href="icons-materialdesign.html" class="dropdown-item">Material Design</a>
-                                                    <a href="icons-dripicons.html" class="dropdown-item">Dripicons</a>
-                                                    <a href="icons-fontawesome.html" class="dropdown-item">Font awesome</a>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-maps" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Maps <div class="arrow-down"></div>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-maps">
-                                                    <a href="maps-google.html" class="dropdown-item">Google Maps</a>
-                                                    <a href="maps-vector.html" class="dropdown-item">Vector Maps</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>                
-
+            <div class="main-content">       
                 <div class="page-content">
                     <div class="container-fluid">
                         <div class="row">
@@ -173,7 +52,6 @@ const Admin = (props) => {
                                     </div>
                                 </div>
                             </div>
-    
                             <div class="col-lg-6 col-xl-3">
                                 <div class="card">
                                     <div class="card-body">
@@ -430,6 +308,77 @@ const Admin = (props) => {
                                             </table>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div className="home-gallery">
+                                <div className="home-gallery1">
+                                    <h1 className="home-gallery-heading heading2">Now Playing</h1>
+                                    <div className="home-container29">
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1699464627/amc-cdn/production/2/movies/71000/70972/PosterDynamic/160262.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695218026/amc-cdn/production/2/movies/69700/69677/PosterDynamic/158471.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName1"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1694700678/amc-cdn/production/2/movies/66300/66317/PosterDynamic/157258.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName3"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1693920876/amc-cdn/production/2/movies/74100/74142/PosterDynamic/156768.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName2"
+                                    ></GalleryCard3>
+                                </div>
+                                </div>
+                            </div>
+                            <div className="home-gallery">
+                                <div className="home-gallery1">
+                                <h1 className="home-gallery-heading heading2">Coming Soon</h1>
+                                <div className="home-container29">
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695831399/amc-cdn/production/2/movies/62400/62364/PosterDynamic/158798.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697636395/amc-cdn/production/2/movies/73200/73172/PosterDynamic/159468.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName1"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697117324/amc-cdn/production/2/movies/72800/72780/Poster/348916R1.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName3"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1696433843/amc-cdn/production/2/movies/73200/73177/PosterDynamic/159108.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName2"
+                                    ></GalleryCard3>
+                                </div>
+                                </div>
+                            </div>
+                            <div className="home-gallery">
+                                <div className="home-gallery1">
+                                <h1 className="home-gallery-heading heading2">All Movies</h1>
+                                <div className="home-container29">
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1695831399/amc-cdn/production/2/movies/62400/62364/PosterDynamic/158798.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697636395/amc-cdn/production/2/movies/73200/73172/PosterDynamic/159468.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName1"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1697117324/amc-cdn/production/2/movies/72800/72780/Poster/348916R1.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName3"
+                                    ></GalleryCard3>
+                                    <GalleryCard3
+                                    image_src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_465,q_auto,w_310/v1696433843/amc-cdn/production/2/movies/73200/73177/PosterDynamic/159108.jpg?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMTMzNjIxOHw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
+                                    rootClassName="rootClassName2"
+                                    ></GalleryCard3>
+                                </div>
                                 </div>
                             </div>
                         </div>
