@@ -19,4 +19,10 @@
 
    • We also had debts on which database to choose from that would best fit with the project. 
 
-   • This is crucial for making knowledgeable decisions that benefit the project in the long run. 
+   • This is crucial for making knowledgeable decisions that benefit the project in the long run.
+
+# Diagrams
+
+(Architecture Diagram)
+
+![Art Dia](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/4878a6ce-5890-473f-ae81-528fa9fb859c)
