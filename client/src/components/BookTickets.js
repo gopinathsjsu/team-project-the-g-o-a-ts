@@ -14,12 +14,10 @@ export default function BookTickets() {
   const [options] = useState(movies);
   const [rows] = useState(rowsData);
   const onclick = (e) => {
-    debugger;
+    // debugger;
     if (
       // React Ref
-      ![...document.getElementById(e.target.id).classList].includes(
-        "selected"
-      ) &&
+      ![...document.getElementById(e.target.id).classList].includes("selected") &&
       ![...document.getElementById(e.target.id).classList].includes("occupied")
     ) {
       document.getElementById(e.target.id).classList.add("selected");
@@ -29,22 +27,21 @@ export default function BookTickets() {
   };
 
   return (
-        <div className="BookTickets">
-          <Dropdown
+    <div className="BookTickets">
+      {/* <Dropdown
             movie={movie}
             changeMovie={(e) => setMovie(e.target.value)}
             options={options}
-          />
-          <List />
-          <div className="container">
-            {rows.map(({ id, occupied }, index) => (
-              <Row row={id} click={onclick} occupied={occupied} />
-            ))}
-          </div>
-          <p className="text">
-            You have selected <span id="count">{seat}</span> seats for a price of $
-            <span id="total">{price}</span>
-          </p>
-        </div>
-      );
+          /> */}
+      <List />
+      <div className="container">
+        {rows.map(({ id, occupied }, index) => (
+          <Row row={id} click={onclick} occupied={occupied} />
+        ))}
+      </div>
+      <p className="text">
+        You have selected <span id="count">{seat}</span> seats for a price of $<span id="total">{price}</span>
+      </p>
+    </div>
+  );
 }

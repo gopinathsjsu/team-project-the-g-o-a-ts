@@ -57,5 +57,18 @@ router.get("/getmovies/:id", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const deleted = await Movie.findByIdAndDelete(req.params.id);
+    if (deleted) {
+      res.status(200).send("Successfully deleted");
+    } else {
+      res.status(500).send("Could not delete movie");
+    }
+  } catch (error) {
+    res.status(500).send("Server error deleting");
+  }
+});
+
 
 module.exports = router;

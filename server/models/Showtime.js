@@ -15,6 +15,9 @@ const showtimeSchema = new mongoose.Schema({
   startTime: { type: Date, required: true },
   price: { type: Number, required: true },
   discountPrice: Number,
+  seatsBooked: {
+    type: [Number],
+  },
 });
 
 module.exports = mongoose.model("Showtime", showtimeSchema, "showtimes");
