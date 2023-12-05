@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup.js";
-import BookTickets from "./components/BookTickets.js";
 import Home from "./components/Home.js";
 import Profile from "./components/Profile.js";
 import Admin from "./components/admin.js";
@@ -16,6 +15,7 @@ import { AuthProvider } from "./contexts/AuthProvider.js";
 import ReAuthenticator from "./common/ReAuthenticator.js";
 import permissionDenied from "./components/permissionDenied.js";
 import BookingTickets from "./components/BookingTickets.js";
+import Checkout from "./components/Booking/Checkout.js";
 
 const App = () => {
   return (
@@ -26,12 +26,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/booktickets" element={<BookTickets />} />
-        <Route path="/bookingtickets" element={<BookingTickets />} />
+        <Route path="/bookingtickets/:showtimeId" element={<BookingTickets />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/permissionDenied" element={<permissionDenied />} />
         <Route path="/selectMovie" element={<SelectMovie />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </AuthProvider>
   );

@@ -13,6 +13,17 @@ router.post("/createshowtime", async (req, res) => {
   }
 });
 
+router.put("/update/:id", async (req, res) => {
+  try {
+    const showtimeUpdated = await Showtime.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!showtimeUpdated) {
+      return res.status(404).send("Could not find showtime with id");
+    }
+    res.json(showtimeUpdated);
+  } catch (error) {
+    res.status(500).send("Error retreiving showtimes");
+  }
+});
 
 router.get("/getshowtime/:id", async (req, res) => {
   try {
