@@ -23,6 +23,7 @@ import Editor from "./components/Editor.js";
 import AddTheater from "./components/Editor/AddTheater.js";
 import AddMovie from "./components/Editor/AddMovie.js";
 import AddShowtime from "./components/Editor/AddShowtime.js";
+import RemoveMovie from "./components/Editor/RemoveMovie.js";
 
 const App = () => {
   return (
@@ -72,6 +73,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <AddShowtime />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/removemovie"
+          element={
+            <ProtectedRoute>
+              <RemoveMovie />
             </ProtectedRoute>
           }
         />
