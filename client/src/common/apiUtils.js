@@ -20,9 +20,40 @@ export const getScreenings = async () => {
   }
 };
 
+
+export const getScreeningsById = async (id) => {
+  try {
+    const response = await apiClient.get(`/showtimes/getshowtime/${id}`);
+    return response.data;
+  } catch (err) {
+    console.error(err.message);
+    alert("Failed to fetch user. Please check the user ID.");
+  }
+};
+
 export const getAllBookings = async () => {
   try {
     const response = await apiClient.get(`/bookings/getbookings`);
+    return response.data;
+  } catch (err) {
+    console.error(err.message);
+    alert("Failed to fetch user. Please check the user ID.");
+  }
+};
+
+export const getAllBookingsById = async (userId) => {
+  try {
+    const response = await apiClient.get(`/bookings/getbookingsbyid/${userId}`);
+    return response.data;
+  } catch (err) {
+    console.error(err.message);
+    alert("Failed to fetch user. Please check the user ID.");
+  }
+};
+
+export const removeBooking = async (bookingId) => {
+  try {
+    const response = await apiClient.delete(`/bookings/remove/${bookingId}`);
     return response.data;
   } catch (err) {
     console.error(err.message);

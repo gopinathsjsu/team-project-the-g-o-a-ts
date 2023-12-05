@@ -3,6 +3,23 @@ import { jwtDecode } from "jwt-decode";
 import apiClient from "../api-client/apiClient";
 import "../css/profile.css";
 import { AuthContext } from "../contexts/AuthProvider";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { getAllBookingsById, removeBooking, getScreeningsById, getAllMovies, getAllTheaters } from "../common/apiUtils";
+import {
+  Container,
+  Button,
+  TableContainer,
+  Paper,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell,
+  Table,
+} from "@mui/material";
 
 const Profile = () => {
   const { userData } = useContext(AuthContext);
@@ -13,10 +30,51 @@ const Profile = () => {
     { title: "Movie 3", tickets: 3 },
   ]);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [showtimes, setShowtimes] = useState({});
+  const [activeBookings, setActiveBookings] = useState([]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [theaters, setTheaters] = useState([]);
 
-  const handleMovieChange = (index) => {
-    setSelectedMovie(moviesWithTickets[index]);
+  useEffect(() => {
+    const fetchActiveBookings = async () => {
+      if (userData && userData._id) {
+        const mvs = await getAllMovies();
+        setMovies(mvs);
+        const thts = await getAllTheaters();
+        setTheaters(thts);
+        const bookings = await getAllBookingsById(userData._id);
+        setActiveBookings(bookings);
+
+        // Fetch showtimes for the bookings
+        for (const booking of bookings) {
+          const showtime = await getScreeningsById(booking.showtimeId);
+          setShowtimes((prev) => ({ ...prev, [booking.showtimeId]: showtime }));
+        }
+      }
+    };
+    fetchActiveBookings();
+  }, [userData]);
+
+  console.log(activeBookings);
+
+  const handleRowClick = (booking) => {
+    setSelectedBooking(booking);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirmCancel = async () => {
+    const showtime = showtimes[selectedBooking.showtimeId];
+    if (showtime && new Date(showtime.startTime) > new Date()) {
+      await removeBooking(selectedBooking._id);
+      setActiveBookings(activeBookings.filter((b) => b._id !== selectedBooking._id));
+    }
+    setOpenDialog(false);
   };
 
   if (!userData) {
@@ -102,26 +160,72 @@ const Profile = () => {
                     <p>{userData.email}</p>
                   </div>
                 </div>
-                <div className="dropdown-container">
-                  <label>Select a Movie: </label>
-                  <select
-                    value={selectedMovie ? selectedMovie.title : ""}
-                    onChange={(e) => handleMovieChange(e.target.selectedIndex - 1)}
-                  >
-                    <option value="" disabled>
-                      Select a movie
-                    </option>
-                    {moviesWithTickets.map((movie, index) => (
-                      <option key={index} value={movie.title}>
-                        {movie.title} - {movie.tickets} tickets
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {selectedMovie && (
-                  <p>
-                    You have {selectedMovie.tickets} tickets for {selectedMovie.title}.
-                  </p>
+
+                {activeBookings.length > 0 ? (
+                  <>
+                    <Container maxWidth="lg" style={{ marginTop: "2em" }}>
+                      <h3>Active Bookings</h3>
+                      <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Movie Title</TableCell>
+                              <TableCell align="right">Theater</TableCell>
+                              <TableCell align="right">Tickets</TableCell>
+                              <TableCell align="right">Start Time</TableCell>
+                              <TableCell align="right">Action</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {activeBookings.map((booking) => {
+                              const movieTitle =
+                                movies.find((movie) => movie._id === booking.movieId)?.title || "Loading...";
+                              const showtime = showtimes[booking.showtimeId];
+                              const theaterName =
+                                showtime && theaters.find((theater) => theater._id === showtime.theaterId)?.name;
+                              return (
+                                <TableRow key={booking._id} hover onClick={() => handleRowClick(booking)}>
+                                  <TableCell component="th" scope="row">
+                                    {movieTitle}
+                                  </TableCell>
+                                  <TableCell align="right" component="th" scope="row">
+                                    {theaterName || "Unknown"}
+                                  </TableCell>
+                                  <TableCell align="right">{booking.seatsBooked.length}</TableCell>
+                                  <TableCell align="right">
+                                    {showtime ? new Date(showtime.startTime).toLocaleString() : "Loading..."}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    <Button variant="contained" color="secondary">
+                                      Cancel
+                                    </Button>
+                                  </TableCell>
+                                </TableRow>
+                              );
+                            })}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </Container>
+
+                    {/* Dialog for cancellation confirmation */}
+                    <Dialog open={openDialog} onClose={handleCloseDialog}>
+                      <DialogTitle>{"Cancel Booking"}</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>Are you sure you want to cancel this booking?</DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleCloseDialog} variant="contained">
+                          No
+                        </Button>
+                        <Button onClick={handleConfirmCancel} variant="contained" autoFocus>
+                          Yes
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </>
+                ) : (
+                  <p>No Active Bookins</p>
                 )}
               </div>
             </div>
