@@ -8,7 +8,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { getAllBookingsById, removeBooking, getScreeningsById, getAllMovies, getAllTheaters } from "../common/apiUtils";
+import {
+  getAllBookingsById,
+  removeBooking,
+  getScreeningsById,
+  getAllMovies,
+  getAllTheaters,
+} from "../common/apiUtils";
 import {
   Container,
   Button,
@@ -72,13 +78,19 @@ const Profile = () => {
     const showtime = showtimes[selectedBooking.showtimeId];
     if (showtime && new Date(showtime.startTime) > new Date()) {
       await removeBooking(selectedBooking._id);
-      setActiveBookings(activeBookings.filter((b) => b._id !== selectedBooking._id));
+      setActiveBookings(
+        activeBookings.filter((b) => b._id !== selectedBooking._id)
+      );
     }
     setOpenDialog(false);
   };
 
   if (!userData) {
-    return <h2 style={{ textAlign: "center", marginTop: "5em" }}>Please Login First!</h2>; // may change to just show user profile, but hide the buttons for editing etc.
+    return (
+      <h2 style={{ textAlign: "center", marginTop: "5em" }}>
+        Please Login First!
+      </h2>
+    ); // may change to just show user profile, but hide the buttons for editing etc.
   }
 
   return (
@@ -121,21 +133,44 @@ const Profile = () => {
               </ul>
             </div>
           </div>
-          <div class="col-md-2">
-            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-          </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <div class="profile-work">
               <p>Movies Watched in the past 30 days</p>
-              <a href="">Barbie Movie</a>
+              {activeBookings.length > 0 ? (
+                <ul>
+                  {activeBookings
+                    .filter((booking) => {
+                      const thirtyDaysAgo = new Date();
+                      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                      const showtime = showtimes[booking.showtimeId];
+                      return (
+                        showtime &&
+                        new Date(showtime.startTime) >= thirtyDaysAgo
+                      );
+                    })
+                    .map((booking) => {
+                      const movieTitle =
+                        movies.find((movie) => movie._id === booking.movieId)
+                          ?.title || "Loading...";
+                      return <li key={booking._id}>{movieTitle}</li>;
+                    })}
+                </ul>
+              ) : (
+                <p>No movies watched in the past 30 days</p>
+              )}
               <br />
             </div>
           </div>
           <div class="col-md-8">
             <div class="tab-content profile-tab" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div
+                class="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
                 <div className="row">
                   <div className="col-md-6">
                     <label>User Id</label>
@@ -179,24 +214,47 @@ const Profile = () => {
                           <TableBody>
                             {activeBookings.map((booking) => {
                               const movieTitle =
-                                movies.find((movie) => movie._id === booking.movieId)?.title || "Loading...";
+                                movies.find(
+                                  (movie) => movie._id === booking.movieId
+                                )?.title || "Loading...";
                               const showtime = showtimes[booking.showtimeId];
                               const theaterName =
-                                showtime && theaters.find((theater) => theater._id === showtime.theaterId)?.name;
+                                showtime &&
+                                theaters.find(
+                                  (theater) =>
+                                    theater._id === showtime.theaterId
+                                )?.name;
                               return (
-                                <TableRow key={booking._id} hover onClick={() => handleRowClick(booking)}>
+                                <TableRow
+                                  key={booking._id}
+                                  hover
+                                  onClick={() => handleRowClick(booking)}
+                                >
                                   <TableCell component="th" scope="row">
                                     {movieTitle}
                                   </TableCell>
-                                  <TableCell align="right" component="th" scope="row">
+                                  <TableCell
+                                    align="right"
+                                    component="th"
+                                    scope="row"
+                                  >
                                     {theaterName || "Unknown"}
                                   </TableCell>
-                                  <TableCell align="right">{booking.seatsBooked.length}</TableCell>
                                   <TableCell align="right">
-                                    {showtime ? new Date(showtime.startTime).toLocaleString() : "Loading..."}
+                                    {booking.seatsBooked.length}
                                   </TableCell>
                                   <TableCell align="right">
-                                    <Button variant="contained" color="secondary">
+                                    {showtime
+                                      ? new Date(
+                                          showtime.startTime
+                                        ).toLocaleString()
+                                      : "Loading..."}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    <Button
+                                      variant="contained"
+                                      color="secondary"
+                                    >
                                       Cancel
                                     </Button>
                                   </TableCell>
@@ -212,20 +270,26 @@ const Profile = () => {
                     <Dialog open={openDialog} onClose={handleCloseDialog}>
                       <DialogTitle>{"Cancel Booking"}</DialogTitle>
                       <DialogContent>
-                        <DialogContentText>Are you sure you want to cancel this booking?</DialogContentText>
+                        <DialogContentText>
+                          Are you sure you want to cancel this booking?
+                        </DialogContentText>
                       </DialogContent>
                       <DialogActions>
                         <Button onClick={handleCloseDialog} variant="contained">
                           No
                         </Button>
-                        <Button onClick={handleConfirmCancel} variant="contained" autoFocus>
+                        <Button
+                          onClick={handleConfirmCancel}
+                          variant="contained"
+                          autoFocus
+                        >
                           Yes
                         </Button>
                       </DialogActions>
                     </Dialog>
                   </>
                 ) : (
-                  <p>No Active Bookins</p>
+                  <p>No Active Bookings</p>
                 )}
               </div>
             </div>
