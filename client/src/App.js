@@ -12,6 +12,9 @@ import Admin from "./components/admin.js";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import SelectMovie from "./components/SelectMovie.js";
+import { AuthProvider } from "./contexts/AuthProvider.js";
+import ReAuthenticator from "./common/ReAuthenticator.js";
+import permissionDenied from "./components/permissionDenied.js";
 
 const App = () => {
   return (
@@ -26,7 +29,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/permissionDenied" element={<permissionDenied />} />
-            <Route path="/selectMovie" element={<SelectMovie/>} />
+        <Route path="/selectMovie" element={<SelectMovie />} />
       </Routes>
     </AuthProvider>
   );
