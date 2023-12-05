@@ -21,6 +21,9 @@ const Editor = () => {
       <Button variant="contained" component={Link} to={`/editor/removemovie`}>
         Remove Movie
       </Button>
+      <Button variant="contained" component={Link} to={`/editor/removetheater`}>
+        Remove Theater
+      </Button>
     </>
   );
 };
