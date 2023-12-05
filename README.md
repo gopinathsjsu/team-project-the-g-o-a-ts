@@ -24,5 +24,5 @@
 # Diagrams
 
 (Architecture Diagram)
+![arch drawio](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/d9b97c20-3580-4da1-87ce-1c086f8e759f)
 
-![Art Dia](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/4878a6ce-5890-473f-ae81-528fa9fb859c)
