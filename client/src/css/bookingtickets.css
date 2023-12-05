@@ -1,8 +1,7 @@
-
 .seat {
     background-color: black;
-    height: 12px;
-    width: 15px;
+    height: 1em;
+    width: 1em;
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;

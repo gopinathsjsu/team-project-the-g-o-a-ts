@@ -5,7 +5,11 @@ import "../css/navbar.css";
 import { AuthContext } from "../contexts/AuthProvider";
 
 export default function Navbar() {
-  const { userData } = useContext(AuthContext);
+  const { userData, logout } = useContext(AuthContext);
+
+  const handleLogOut = (e) => {
+    logout();
+  };
 
   return (
     <div>
@@ -21,13 +25,20 @@ export default function Navbar() {
               </Link>
               <span className="home-nav3">Features</span>
               <span className="home-nav4">Pricing</span>
-              <span className="home-nav5">Contact</span>
             </nav>
             <div className="home-buttons">
+              <Link to="/checkout" className="nav-link button home-login">
+                Cart
+              </Link>
               {userData != null ? (
-                <Link to="/profile" className="nav-link button home-login">
-                  Profile
-                </Link>
+                <>
+                  <Link to="/profile" className="nav-link button home-login">
+                    Profile
+                  </Link>
+                  <button className="nav-link" onClick={handleLogOut}>
+                    Logout
+                  </button>
+                </>
               ) : (
                 <>
                   <Link to="/login" className="nav-link button home-login">

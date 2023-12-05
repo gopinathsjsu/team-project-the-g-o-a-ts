@@ -4,7 +4,7 @@ export default function List() {
     <ul class="showcase">
       <li>
         <div class="seat"></div>
-        <small>N/A</small>
+        <small>Open</small>
       </li>
       <li>
         <div class="seat selected"></div>

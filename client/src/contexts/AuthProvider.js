@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     console.log("logging out...");
     localStorage.removeItem("token");
+    localStorage.removeItem("bookingDetails");
     setUserData(null);
     setIsAuthed(false);
   };
