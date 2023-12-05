@@ -16,6 +16,28 @@ router.post("/createmovie", async (req, res) => {
 /**
  * for debugging
  */
+router.get("/getfuturemovies", async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    const futureMovies = movies.filter((movie) => movie.currentlyShowing == false);
+    console.log(futureMovies);
+    res.json(futureMovies);
+  } catch (error) {
+    res.status(500).send("Error retreiving movies");
+  }
+});
+
+router.get("/getcurrentmovies", async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    const currentMovies = movies.filter((movie) => movie.currentlyShowing == true);
+    console.log(currentMovies);
+    res.json(currentMovies);
+  } catch (error) {
+    res.status(500).send("Error retreiving movies");
+  }
+});
+
 router.get("/getmovies", async (req, res) => {
   try {
     const movies = await Movie.find();
