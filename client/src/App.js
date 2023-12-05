@@ -6,7 +6,7 @@ import Navbar from "./components/navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup.js";
 import BookTickets from "./components/BookTickets.js";
-import Home from "./pages/home-page/Home.js";
+import Home from "./components/Home.js";
 import Profile from "./components/Profile.js";
 import Admin from "./components/admin.js";
 import "./style.css";

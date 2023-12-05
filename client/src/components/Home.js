@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 
 import { Helmet } from "react-helmet";
 
-import FeatureCard from "../../components/feature-card";
-import GalleryCard3 from "../../components/gallery-card3";
-import Question from "../../components/question";
-import "../../css/home.css";
-import { AuthContext } from "../../contexts/AuthProvider";
+import FeatureCard from "./feature-card";
+import GalleryCard3 from "./gallery-card3";
+import Question from "./question";
+import "../css/home.css";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Home = (props) => {
   const { userData } = useContext(AuthContext);

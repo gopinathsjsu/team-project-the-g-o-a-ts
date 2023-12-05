@@ -2,7 +2,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-import './question.css'
+import "../css/question.css";
 
 const Question = (props) => {
   return (

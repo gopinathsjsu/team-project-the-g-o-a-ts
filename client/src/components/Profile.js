@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import apiClient from "../api-client/apiClient";
-import "./profile.css";
+import "../css/profile.css";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Profile = () => {
