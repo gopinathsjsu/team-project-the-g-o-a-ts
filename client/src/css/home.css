@@ -944,7 +944,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--dl-color-gray-black);
+  background-color: var(--dl-color-gray-900);
 }
 .home-banner1 {
   gap: var(--dl-space-space-oneandhalfunits);
@@ -959,7 +959,6 @@
   justify-content: flex-start;
 }
 .home-banner-heading {
-  color: var(--dl-color-gray-white);
   text-align: center;
   font-family: "Raleway";
   line-height: 1.6;
