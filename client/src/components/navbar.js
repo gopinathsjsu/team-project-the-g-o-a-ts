@@ -23,7 +23,11 @@ export default function Navbar() {
               <Link to="/" className="nav-link">
                 Home
               </Link>
-              <span className="home-nav3">Features</span>
+
+              <Link to="/screenings" className="home-nav3 nav-link">
+                Screenings
+              </Link>
+
               {userData != null && userData.role == "Admin" ? (
                 <Link to="/admin" className="nav-link home-nav4">
                   Dashboard

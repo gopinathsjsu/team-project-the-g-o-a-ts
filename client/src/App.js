@@ -17,6 +17,8 @@ import permissionDenied from "./components/permissionDenied.js";
 import BookingTickets from "./components/BookingTickets.js";
 import Checkout from "./components/Booking/Checkout.js";
 import ProtectedRoute from "./common/ProtectedRoute.js";
+import Screenings from "./components/Screenings.js";
+import SpecificShowtime from "./components/SpecificShowtime.js";
 
 const App = () => {
   return (
@@ -37,9 +39,11 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/screenings" element={<Screenings />} />
         <Route path="/permissionDenied" element={<permissionDenied />} />
         <Route path="/selectMovie" element={<SelectMovie />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/showtimes/:movieId" element={<SpecificShowtime />} />
       </Routes>
     </AuthProvider>
   );
