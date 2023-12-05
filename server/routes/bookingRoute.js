@@ -13,9 +13,6 @@ router.post("/createbooking", async (req, res) => {
   }
 });
 
-/**
- * for debugging
- */
 router.get("/getbookings", async (req, res) => {
   try {
     const bookings = await Booking.find();
@@ -23,6 +20,19 @@ router.get("/getbookings", async (req, res) => {
     res.json(bookings);
   } catch (error) {
     res.status(500).send("Error retreiving bookings");
+  }
+});
+
+router.delete("/remove/:id", async (req, res) => {
+  try {
+    const deleted = await Booking.findByIdAndDelete(req.params.id);
+    if (deleted) {
+      res.status(200).send("Successfully deleted");
+    } else {
+      res.status(500).send("Could not delete booking");
+    }
+  } catch (error) {
+    res.status(500).send("Server error deleting");
   }
 });
 

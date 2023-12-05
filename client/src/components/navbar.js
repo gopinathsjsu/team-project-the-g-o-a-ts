@@ -29,9 +29,14 @@ export default function Navbar() {
               </Link>
 
               {userData != null && userData.role == "Admin" ? (
-                <Link to="/admin" className="nav-link home-nav4">
-                  Dashboard
-                </Link>
+                <>
+                  <Link to="/admin" className="nav-link home-nav4">
+                    Analytics
+                  </Link>
+                  <Link to="/editor" className="nav-link home-nav4">
+                    Editor
+                  </Link>
+                </>
               ) : null}
             </nav>
             <div className="home-buttons">

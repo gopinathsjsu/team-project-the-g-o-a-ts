@@ -19,6 +19,10 @@ import Checkout from "./components/Booking/Checkout.js";
 import ProtectedRoute from "./common/ProtectedRoute.js";
 import Screenings from "./components/Screenings.js";
 import SpecificShowtime from "./components/SpecificShowtime.js";
+import Editor from "./components/Editor.js";
+import AddTheater from "./components/Editor/AddTheater.js";
+import AddMovie from "./components/Editor/AddMovie.js";
+import AddShowtime from "./components/Editor/AddShowtime.js";
 
 const App = () => {
   return (
@@ -36,6 +40,38 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor"
+          element={
+            <ProtectedRoute>
+              <Editor />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/addtheater"
+          element={
+            <ProtectedRoute>
+              <AddTheater />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/addmovie"
+          element={
+            <ProtectedRoute>
+              <AddMovie />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/addshowtime"
+          element={
+            <ProtectedRoute>
+              <AddShowtime />
             </ProtectedRoute>
           }
         />

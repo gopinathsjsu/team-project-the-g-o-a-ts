@@ -25,6 +25,19 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
+router.delete("/remove/:id", async (req, res) => {
+  try {
+    const deleted = await Showtime.findByIdAndDelete(req.params.id);
+    if (deleted) {
+      res.status(200).send("Successfully deleted");
+    } else {
+      res.status(500).send("Could not delete showtime");
+    }
+  } catch (error) {
+    res.status(500).send("Server error deleting");
+  }
+});
+
 router.get("/getshowtime/:id", async (req, res) => {
   try {
     const showtime = await Showtime.findById(req.params.id);

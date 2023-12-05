@@ -95,6 +95,7 @@ const SpecificShowtime = () => {
             <TableHead>
               <TableRow>
                 <TableCell>Theater</TableCell>
+                <TableCell align="right">Screen #</TableCell>
                 <TableCell align="right">Showtime</TableCell>
                 <TableCell align="right">Location</TableCell>
               </TableRow>
@@ -110,6 +111,7 @@ const SpecificShowtime = () => {
                   <TableCell component="th" scope="row">
                     {getTheater(showtime.theaterId) ? getTheater(showtime.theaterId).name : "Unknown Theater"}
                   </TableCell>
+                  <TableCell align="right">{showtime.screenNumber}</TableCell>
                   <TableCell align="right">
                     {new Date(showtime.startTime).toLocaleString("en-US", {
                       weekday: "long",

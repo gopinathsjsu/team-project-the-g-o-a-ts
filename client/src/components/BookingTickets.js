@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/bookingtickets.css";
 import List from "./List.js";
-import { Container, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import apiClient from "../api-client/apiClient.js";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -149,17 +149,21 @@ const BookingTickets = () => {
 
   return (
     <>
-      <Container maxWidth="md" style={{ marginTop: "2em", backgroundColor: "gray" }}>
-        <List />
-        <Grid container spacing={1}>
-          {renderSeats()}
-        </Grid>
-      </Container>
+      <Container maxWidth="md">
+        <div style={{ marginTop: "2em", backgroundColor: "gray" }}>
+          <List />
+          <Grid container spacing={1} style={{ padding: "1em", paddingRight: "0" }}>
+            {renderSeats()}
+          </Grid>
+        </div>
 
-      <p>
-        Total price: ${totalPrice} {shouldUseDiscountPrice() ? <span>(Discounted Rate)</span> : null}
-      </p>
-      <button onClick={submitSeats}>Checkout</button>
+        <p style={{ marginTop: "1em", fontWeight: 300 }}>
+          Total price: ${totalPrice} {shouldUseDiscountPrice() ? <span>(Discounted Rate)</span> : null}
+        </p>
+        <Button variant="contained" onClick={submitSeats}>
+          Checkout
+        </Button>
+      </Container>
     </>
   );
 };
