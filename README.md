@@ -1,10 +1,10 @@
 # Team Name:
 # the-G-O-A-Ts
 # Team Members:
-1. Alan Park
-2. Larry Liu
-3. Matthew Wong
-4. Nguyen Bui
+1. Alan Park (back-end development)
+2. Larry Liu (front-end development)
+3. Matthew Wong (front-end development)
+4. Nguyen Bui (back-end development)
 
 # XP Core Values:
 1. Simplicity
