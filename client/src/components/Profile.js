@@ -20,7 +20,7 @@ const Profile = () => {
   };
 
   if (!userData) {
-    return <div>Loading...</div>; // may change to just show user profile, but hide the buttons for editing etc.
+    return <h2 style={{ textAlign: "center", marginTop: "5em" }}>Please Login First!</h2>; // may change to just show user profile, but hide the buttons for editing etc.
   }
 
   return (
