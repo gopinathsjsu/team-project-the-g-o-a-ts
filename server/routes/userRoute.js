@@ -4,6 +4,8 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "../config.env" });
 
+const authenticateToken = require("../common/authenticateToken");
+
 /* For protected routes */
 // const authenticateToken = require('./authMiddleware');
 
@@ -51,6 +53,21 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
+  }
+});
+
+router.put("/edit/:id", authenticateToken, async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const updatedData = req.body;
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
+    if (!updatedUser) {
+      return res.status(401).send("User not found");
+    }
+    res.json(updatedUser);
+  } catch (error) {
+    console.error("Error updating user: ", error);
+    res.status(500).send("Internal server error");
   }
 });
 

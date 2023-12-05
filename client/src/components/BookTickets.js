@@ -4,7 +4,7 @@ import Dropdown from "./dropdown.js";
 import List from "./List.js";
 import movies from "./options";
 import rowsData from "./rows";
-import "./booktickets.css"
+import "../css/booktickets.css";
 
 export default function BookTickets() {
 
