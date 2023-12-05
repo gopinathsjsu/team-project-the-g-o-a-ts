@@ -29,6 +29,11 @@ const bookingSchema = new mongoose.Schema({
     enum: ["Confirmed", "Cancelled"],
     default: "Confirmed",
   },
+  movieId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movie",
+    required: true,
+  },
   bookingTime: { type: Date, required: true, default: Date.now() },
 });
 
