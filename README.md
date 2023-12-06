@@ -27,15 +27,27 @@
 
 ![arch drawio](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/d9b97c20-3580-4da1-87ce-1c086f8e759f)
 
+(Deployment Diagram)
+
+(Component Diagram)
+
+# Task Board
+
+![task](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/3917fd06-97b5-4b7b-8c4e-3ce8d2f16889)
+
 # Project Journal 
 
 https://docs.google.com/document/d/13ucGj9Hi09OVoGCP6DF5dnGkmMlzioqwdCyof6rkP0I/edit?usp=sharing
 
-# Google Sheet
+# Google Sheet (Burndown Chart and Scrum Backlog)
 
 https://docs.google.com/spreadsheets/d/1BX7kkyM5GyZoOselhOCogPDAuj0di0zQbVvVbhIJRPs/edit?usp=sharing
 
-# Task Board
+# UI WireFrames
 
-https://tasksboard.com/app/?shareList=eXNVdHdDOENCYUFZa2lGQQ&u=7zYqbtbaNxOgTCjLfcrp6rAfLQV2
+https://docs.google.com/presentation/d/1_l-5mxZAlWgDAL9J0lkWh4ARnnMqGi_n1DsctqOTqcM/edit?usp=sharing
+
+
+
+
 
