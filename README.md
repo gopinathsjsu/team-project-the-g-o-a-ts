@@ -29,6 +29,8 @@
 
 (Deployment Diagram)
 
+![dep drawio](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/0ac7dc95-5b7b-4c15-9889-5db12ba3ca0a)
+
 (Component Diagram)
 
 ![comp drawio (1)](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/7b90b118-bb2d-4ee8-9369-16ff871f37e3)
