@@ -31,6 +31,8 @@
 
 (Component Diagram)
 
+![comp drawio](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/1ed51504-315b-49cc-a3a3-6f2a08d7910b)
+
 # Task Board
 
 ![task](https://github.com/gopinathsjsu/team-project-the-g-o-a-ts/assets/75860665/3917fd06-97b5-4b7b-8c4e-3ce8d2f16889)
